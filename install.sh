@@ -1,2 +1,9 @@
+#!/bin/bash
 echo "Installing dotfiles"
-ln -s $(pwd)/spacemacs ~/.spacemacs
+
+if [ -f ~./spacemacs ]
+then
+  mv ~/.spacemacs ~/.spacemacs-orig
+fi
+
+ln -fs $(pwd)/spacemacs ~/.spacemacs
