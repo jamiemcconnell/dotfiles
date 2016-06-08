@@ -36,9 +36,6 @@ values."
      syntax-checking
      javascript
 
-     ;; (auto-completion :variables
-                      ;; auto-completion-enable-help-tooltip t)
-
      ;; version-control
 
      )
