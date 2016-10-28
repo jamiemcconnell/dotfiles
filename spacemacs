@@ -291,6 +291,7 @@ you should place you code here."
   (setq mouse-wheel-progressive-speed nil) ;; don't accelerate scrolling
   (setq mouse-wheel-follow-mouse 't) ;; scroll window under mouse
 
+  (setq-default unix-indent-offset 2)
   (setq-default python-indent-offset 2)
 
 )
