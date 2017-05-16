@@ -1,9 +1,10 @@
 #!/bin/bash
 echo "Installing dotfiles"
 
-if [ -f ~./spacemacs ]
+# Should probably loop through these when we have more...
+if [ -f ~./.tmux.conf ]
 then
-  mv ~/.spacemacs ~/.spacemacs-orig
+  mv ~/.tmux.conf ~/.tmux-orig
 fi
 
-ln -fs $(pwd)/spacemacs ~/.spacemacs
+ln -fs "$(pwd)/.tmux.conf" "${HOME}/.tmux.conf"
