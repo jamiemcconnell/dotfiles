@@ -53,8 +53,11 @@ ZSH_THEME="honukai"
 plugins=(git docker)
 
 # User configuration
+export EDITOR='vim'
+export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin"
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin"
+# Fix FZF - ignore .gitgnore files
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
 
 source $ZSH/oh-my-zsh.sh
 
@@ -63,10 +66,11 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 #
-alias ls='ls -lhaG'
+alias ls='ls -lhaG -o -g'
 alias src='cd ~/Source'
-alias config='atom ~/.zshrc'
+alias config='$EDITOR ~/.zshrc'
 alias sync='echo "Syncing zshrc config" && source ~/.zshrc'
+alias mux="tmuxinator"
 
 # Node Version Manager
 #
@@ -100,7 +104,16 @@ alias p="cat package.json | jq --sort-keys"
 # uninstall by removing these lines or running `tabtab uninstall sls`
 [[ -f /Users/jamie/Source/pull-request-reminder/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/jamie/Source/pull-request-reminder/node_modules/tabtab/.completions/sls.zsh
 
-export EDITOR='nvim'
 
 BASE16_SHELL=$HOME/Source/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+
+alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
+
+[[ $TMUX = "" ]] || export TERM="xterm-256color"
+
+PURE_PROMPT_SYMBOL=λ
+
+autoload -U promptinit; promptinit
+prompt pure
