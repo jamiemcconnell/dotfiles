@@ -6,7 +6,7 @@ export ZSH=/Users/jamie/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # nanotech
-ZSH_THEME="honukai"
+ZSH_THEME=""
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -53,8 +53,10 @@ ZSH_THEME="honukai"
 plugins=(git docker)
 
 # User configuration
-export EDITOR='vim'
-export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin"
+export VISUAL=nvim
+export EDITOR="$VISUAL"
+export GIT_EDITOR="$VISUAL"
+export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Users/jamie/.gem/bin"
 
 # Fix FZF - ignore .gitgnore files
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
@@ -88,8 +90,15 @@ export PATH=$PATH:$GOPATH/bin
 # Yarn
 export PATH="$HOME/.yarn/bin:$PATH"
 
+# AWS CLI
+export PATH=~/Library/Python/3.6/bin:$PATH
+
+# Gem
+export GEM_HOME=~/.gem
+export GEM_PATH=~/.gem
+
 # FZF
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Nice aliases for package.json
 alias v="cat package.json | jq .version"
@@ -98,22 +107,46 @@ alias p="cat package.json | jq --sort-keys"
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /Users/jamie/Source/pull-request-reminder/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/jamie/Source/pull-request-reminder/node_modules/tabtab/.completions/serverless.zsh
+#[[ -f /Users/jamie/Source/pull-request-reminder/node_modules/tabtab/.completions/serverless.zsh ]] && . /Users/jamie/Source/pull-request-reminder/node_modules/tabtab/.completions/serverless.zsh
 
 # tabtab source for sls package
 # uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /Users/jamie/Source/pull-request-reminder/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/jamie/Source/pull-request-reminder/node_modules/tabtab/.completions/sls.zsh
+#[[ -f /Users/jamie/Source/pull-request-reminder/node_modules/tabtab/.completions/sls.zsh ]] && . /Users/jamie/Source/pull-request-reminder/node_modules/tabtab/.completions/sls.zsh
 
+# Escape keys are slow in VIM: https://www.johnhawthorn.com/2012/09/vi-escape-delays/
+KEYTIMEOUT=1
 
+# base16_dracula
+# base16_outrun_dark
 BASE16_SHELL=$HOME/Source/base16-shell/
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 
-alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
-alias vi='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias vim='nvim'
+alias vi='nvim'
+alias vimdiff='nvim -d'
 
 [[ $TMUX = "" ]] || export TERM="xterm-256color"
 
-PURE_PROMPT_SYMBOL=λ
+alias start_elemez='export _odir=$(pwd) && cd ~/Source/elemez-docker/development && docker-compose up -d && cd $_odir && docker attach development_dev_1'
+alias stop_elemez='export _odir=$(pwd) && cd ~/Source/elemez-docker/development && docker-compose down && cd $_odir'
 
+# Pure Prompt
+PURE_PROMPT_SYMBOL=λ
 autoload -U promptinit; promptinit
 prompt pure
+
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm use default
+
+alias neofetch2="neofetch \
+--config off \
+--block_range 1 8 \
+--bold off \
+--uptime_shorthand on \
+--gtk_shorthand on \
+--colors 4 1 8 8 8 7 \
+"
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[[ -f /Users/jamie/Source/node_modules/tabtab/.completions/slss.zsh ]] && . /Users/jamie/Source/node_modules/tabtab/.completions/slss.zsh

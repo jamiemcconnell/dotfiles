@@ -1,0 +1,26 @@
+---
+  extends: airbnb
+  parser: @typescript-eslint
+  rules:
+    keyword-spacing: 0
+    space-infix-ops: 0
+    func-names: 0
+    space-before-function-paren: 0
+    object-curly-newline: 0
+    no-underscore-dangle: 0
+    comma-dangle: 0
+    max-len: 0
+    prefer-arrow-callback: 0
+    arrow-body-style: 0
+    padded-blocks: 1
+    new-cap: 0
+    react/jsx-filename-extension: off
+    import/extensions: ignorePackages
+    import/no-unresolved: off
+  globals:
+    describe: true
+    before: true
+    beforeEach: true
+    after: true
+    afterEach: true
+    it: true
